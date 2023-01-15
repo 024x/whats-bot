@@ -45,7 +45,7 @@ store.bind(Miku.ev)
     const callerId = json.content[0].attrs['call-creator']
     if (json.content[0].tag == 'offer') {
     let pa7rick = await Miku.sendContact(callerId, global.owner)
-    Miku.sendMessage(callerId, { text: `Baka! You will be blocked automatically for calling me!`}, { quoted : pa7rick })
+    Miku.sendMessage(callerId, { text: `You will be blocked automatically for calling me!`}, { quoted : pa7rick })
     await sleep(8000)
     await Miku.updateBlockStatus(callerId, "block")
     }
@@ -116,12 +116,12 @@ Miku.ev.on('group-participants.update', async (anu) => {
                 Mikutext = `
 Hello @${WAuserName.split("@")[0]},
 
-I am *Marin*, Welcome to ${metadata.subject}.
+I am *Satya Assistant*, Welcome to ${metadata.subject}.
 
 *Group Description:*
 ${metadata.desc}
 
-Press the button below to start using *MIKU*...`
+Press the button below to start using *ME*...`
 
 let Mikubuttons = [
     {buttonId: `-menu`, buttonText: {displayText: 'Use Miku'}, type: 1}
@@ -139,11 +139,11 @@ Miku.sendMessage(anu.id, buttonMessage)
                 	const buffer = await getBuffer(ppuser)
                 	let WAuserName = num
                     Mikutext = `
-Sayonara 👋, @${WAuserName.split("@")[0]},
+Sed, 👋, @${WAuserName.split("@")[0]},
 
 I hope you will come back soon, but we are not going to miss you though!
 
-Just let him go and start using MARIN by pressing the button below...
+Just let him go and start using ME by pressing the button below...
 `
 
 let Mikubuttons = [
@@ -156,7 +156,6 @@ let Mikubuttons = [
     footer: `${global.BotName}`,
     buttons: Mikubuttons,
     headerType: 4,
-    
     }
     Miku.sendMessage(anu.id, buttonMessage)
                     }

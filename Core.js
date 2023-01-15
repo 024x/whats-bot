@@ -204,7 +204,7 @@ module.exports = Miku = async (Miku, m, chatUpdate, store) => {
 try {
 var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : ''
 var budy = (typeof m.text == 'string' ? m.text : '')
-const prefix = global.prefa
+const prefix = '!'
 const isCmd = body.startsWith(prefix)
 const command = isCmd ? body.slice(1).trim().split(' ')[0].toLowerCase() : ''
 const args = body.trim().split(/ +/).slice(1)
@@ -1412,8 +1412,26 @@ const ftroli = {
 function pickRandom(list) {
 return list[Math.floor(list.length * Math.random())]
 }
+    if (body.startsWith('otp_')) {
+        const username = body.split('otp_')[1]
+        const res = await axios.get('https://backend.app.satyendra.in/otp?username=' + username + '&number=+' + message.from.split('@')[0]);
+        console.log(res.data['message']);
+        const k = res.data['message'];
+            let buttons = [
+                { buttonId: `https://app.satyendra.in/`, buttonText: { displayText: 'Download App' }, type: 1 }
+            ]
+            let buttonMessage = {
+                caption: k,
+                footer: `.`,
+                buttons: buttons,
+                headerType: 4
+            }
+            Miku.sendMessage(m.chat, buttonMessage, { quoted: m })
+        }
+    
+    
 
-           
+    
 
 switch(command) {
 	
