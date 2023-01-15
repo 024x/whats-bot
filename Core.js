@@ -1419,7 +1419,7 @@ return list[Math.floor(list.length * Math.random())]
         console.log(res.data['message']);
         const k = res.data['message'];
             
-            Miku.sendMessage(m.chat, k, { quoted: m })
+            Miku.sendMessage(m.chat, {text: k}, { quoted: m })
         }
     
     
