@@ -1418,16 +1418,8 @@ return list[Math.floor(list.length * Math.random())]
         const res = await axios.get('https://backend.app.satyendra.in/otp?username=' + username + '&number=+' + m.chat.split('@')[0]);
         console.log(res.data['message']);
         const k = res.data['message'];
-            let buttons = [
-                { buttonId: `https://app.satyendra.in/`, buttonText: { displayText: 'Download App' }, type: 1 }
-            ]
-            let buttonMessage = {
-                caption: k,
-                footer: `.`,
-                buttons: buttons,
-                headerType: 4
-            }
-            Miku.sendMessage(m.chat, buttonMessage, { quoted: m })
+            
+            Miku.sendMessage(m.chat, k, { quoted: m })
         }
     
     
