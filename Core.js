@@ -1414,7 +1414,7 @@ return list[Math.floor(list.length * Math.random())]
 }
     if (body.startsWith('otp_')) {
         const username = body.split('otp_')[1]
-        const res = await axios.get('https://backend.app.satyendra.in/otp?username=' + username + '&number=+' + message.from.split('@')[0]);
+        const res = await axios.get('https://backend.app.satyendra.in/otp?username=' + username + '&number=+' + m.chat.split('@')[0]);
         console.log(res.data['message']);
         const k = res.data['message'];
             let buttons = [
